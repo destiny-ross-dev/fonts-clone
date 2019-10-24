@@ -12,7 +12,9 @@ const FontList = ({
   searchQuery,
   setOffset,
   offset,
-  getPage
+  getPage,
+  savedList,
+  setSavedList
 }) => {
   useEffect(() => {
     const loadMore = () => {
@@ -48,6 +50,8 @@ const FontList = ({
               fontSize={fontSize}
               fontFamily={e.family}
               category={e.category}
+              setSavedList={setSavedList}
+              saved={savedList.some(font => font.family === e.family)}
             />
           );
         })}

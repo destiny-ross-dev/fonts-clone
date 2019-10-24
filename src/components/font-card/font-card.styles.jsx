@@ -19,6 +19,7 @@ const Container = styled.div`
   h2 {
   }
   p {
+    word-wrap: break-word;
   }
 `;
 

@@ -2,7 +2,14 @@ import React from "react";
 import Helmet from "react-helmet";
 import Card from "./font-card.styles";
 
-const FontCard = ({ displayText, fontSize, fontFamily, category }) => {
+const FontCard = ({
+  displayText,
+  fontSize,
+  fontFamily,
+  category,
+  saved,
+  setSavedList
+}) => {
   const arr300 = ["Open Sans Condensed", "Sunflower"];
   let search = fontFamily.split(" ").join("+");
   if (arr300.includes(fontFamily)) {
@@ -12,9 +19,6 @@ const FontCard = ({ displayText, fontSize, fontFamily, category }) => {
   let backup;
   if (category === "handwriting" || "display") {
     backup = "cursive";
-  }
-  if (category) {
-    backup = "monospace";
   } else backup = category;
 
   return (
@@ -29,7 +33,32 @@ const FontCard = ({ displayText, fontSize, fontFamily, category }) => {
       </Helmet>
       <Card.TitleBar>
         <h2>{fontFamily}</h2>
-        <i className="fas fa-plus-circle"></i>
+        {!saved && (
+          <div
+            className="Add"
+            onClick={() => {
+              console.log("add:", { family: fontFamily, category });
+              setSavedList(savedList => [
+                ...savedList,
+                { family: fontFamily, category }
+              ]);
+            }}
+          >
+            <i className="fal fa-plus-circle"></i>
+          </div>
+        )}
+        {saved && (
+          <div
+            className="Remove"
+            onClick={() =>
+              setSavedList(savedList =>
+                savedList.filter(font => font.family !== fontFamily)
+              )
+            }
+          >
+            <i class="fas fa-minus-circle"></i>
+          </div>
+        )}
       </Card.TitleBar>
       <Card.SubTitle>{category}</Card.SubTitle>
       <p style={{ fontFamily: `${fontFamily}, ${backup}`, fontSize: fontSize }}>

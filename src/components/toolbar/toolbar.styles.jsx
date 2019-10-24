@@ -37,7 +37,7 @@ const SearchContainer = styled.div`
   }
   & input {
     border: none;
-    width: 150px;
+    width: 120px;
     height: 100%;
     background: none;
     padding: 4px 8px;
@@ -101,6 +101,16 @@ const TextModContainer = styled.div`
 
   .react-select__single-value {
     color: ${props => props.theme.color};
+  }
+  .react-select__menu {
+    padding: 0 0;
+  }
+  .react-select__option--is-selected {
+    background: ${props => props.theme.accent};
+    color: white;
+  }
+  .react-select__option-is-focused {
+    background: #ff8585;
   }
 `;
 const FontSizeModContainer = styled.div`

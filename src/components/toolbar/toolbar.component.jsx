@@ -7,7 +7,7 @@ const TextModOptions = [
   { value: "sentence", label: "Sentence" },
   { value: "paragraph", label: "Paragraph" },
   { value: "alphabet", label: "Alphabet" },
-  { value: "numerical", label: "Numerical" },
+  { value: "numerals", label: "Numerals" },
   { value: "custom", label: "Custom Text" }
 ];
 const FontSizeOptions = [
@@ -129,14 +129,25 @@ const Toolbar = ({
   );
 };
 const customStyles = {
-  option: (provided, state) => ({
-    ...provided,
-    padding: 0
-  }),
+  option: (provided, state) => {
+    console.log(provided, state);
+    return {
+      ...provided,
+      width: 120,
+      color: "black",
+      background: "white",
+      "&:active": { backgroundColor: "#FF8585 !important" },
+      "&:focus": { backgroundColor: "#FF8585 !important" },
+      "&:hover": {
+        background: "#ff5252",
+        color: "white"
+      }
+    };
+  },
   control: provided => {
     return {
       margin: "0",
-      width: 100,
+      width: 120,
       display: "flex",
       padding: "2px 0px",
       height: "100%",

@@ -7,8 +7,8 @@ import GlobalStyle, { AppContainer, ToTopButton } from "./App.styles";
 import SavedList from "./components/saved-list/saved-list.component";
 import Footer from "./components/footer/footer.component";
 import Loader from "./components/loader/loader.component";
-
 import { LOAD_ON_INIT } from "./config";
+
 const FontList = React.lazy(() =>
   import("./components/font-list/font-list.component")
 );
@@ -31,7 +31,6 @@ const darkTheme = {
 
 function App() {
   // data & list related
-  const [dataLoaded, setDataLoaded] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   // layout
@@ -60,23 +59,6 @@ function App() {
   const [offset, setOffset] = useState(LOAD_ON_INIT);
   const [listData, setListData] = useState([]);
   useEffect(() => {
-    getPage(LOAD_ON_INIT);
-  }, []);
-
-  const getPage = async (offset = LOAD_ON_INIT) => {
-    const res = await axios.get(`/fonts?offset=${offset}`);
-    console.log(res.data.length, res.data);
-    setListData(listData => [...listData, ...res.data]);
-  };
-
-  const handleSearch = async () => {
-    setOffset(LOAD_ON_INIT);
-    const newList = await axios.get(`/fonts/search?name=${searchQuery}`);
-    console.log({ list: newList.data });
-    setListData(newList.data);
-  };
-
-  useEffect(() => {
     window.addEventListener("scroll", scroll);
     window.scrollY >= 88 && setFixedToTop(true);
     window.scrollY <= 88 && setFixedToTop(false);
@@ -89,6 +71,34 @@ function App() {
     window.scrollY <= 88 && setFixedToTop(false);
   };
 
+  useEffect(() => {
+    getPage();
+  }, []);
+
+  const getPage = async (offset = LOAD_ON_INIT) => {
+    const res = await axios.get(`/fonts?offset=${offset}`);
+    setListData(listData => [...listData, ...res.data]);
+  };
+
+  const handleSearchInput = async e => {
+    setSearchQuery(e.target.value);
+    if (e.target.value.length === 0) {
+      const res = await axios.get(`/fonts?offset=${LOAD_ON_INIT}`);
+
+      setListData(res.data);
+    }
+  };
+
+  const handleSearch = async () => {
+    if (searchQuery === "") {
+      return;
+    }
+    setOffset(LOAD_ON_INIT);
+    const newList = await axios.get(`/fonts/search?name=${searchQuery}`);
+
+    setListData(newList.data);
+  };
+
   const reset = () => {
     setDisplayTextType("sentence");
     setDisplayText("Sphinx of black quartz, judge my vow.");
@@ -97,15 +107,19 @@ function App() {
     setListType("grid");
   };
 
-  const handleSearchInput = async e => {
-    setSearchQuery(e.target.value);
-    if (e.target.value.length === 0) {
-      const res = await axios.get(`/fonts?offset=${LOAD_ON_INIT}`);
-      console.log(res.data);
-      setListData(res.data);
-    }
+  const handleDisplayTypeChange = type => {
+    const displayTextDefaults = {
+      sentence: "Sphinx of black quartz, judge my vow.",
+      paragraph:
+        "Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to the level of the spectator on a hillside, the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark sphere, whose upper half was strewn with silver.",
+      numerals: "1234567890",
+      alphabet:
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ‘?’“!”(%)[#]{@}/&<-+÷×=>®©$€£¥¢:;,.*",
+      custom: ""
+    };
+    setDisplayTextType(type);
+    setDisplayText(displayTextDefaults[type]);
   };
-
   return (
     <ThemeProvider theme={themeIsLight ? lightTheme : darkTheme}>
       <AppContainer>
@@ -121,7 +135,7 @@ function App() {
           onSearchSubmit={handleSearch}
           toolbarFixedToTop={toolbarFixedToTop}
           displayTextType={displayTextType}
-          setDisplayTextType={setDisplayTextType}
+          setDisplayTextType={handleDisplayTypeChange}
           displayText={displayText}
           setDisplayText={setDisplayText}
           fontSize={fontSize}
@@ -137,11 +151,12 @@ function App() {
             displayText={displayText}
             fontSize={fontSize}
             searchQuery={searchQuery}
-            dataLoaded={dataLoaded}
             offset={offset}
             setOffset={setOffset}
             data={listData}
             getPage={getPage}
+            savedList={savedList}
+            setSavedList={setSavedList}
           />
 
           {displayToTop && (

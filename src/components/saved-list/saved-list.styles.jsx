@@ -8,20 +8,23 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: rgb(34, 34, 34);
   right: 107px;
   bottom: 0;
   z-index: 5;
   box-shadow: ${props => props.theme.bs};
 `;
 const Header = styled.div`
+  background: rgb(34, 34, 34);
   height: 45px;
-  width: 100%;
+  width: 500px;
   display: flex;
   align-items: center;
   text-align: start;
-  padding: 0 24px;
+  padding: 12px 24px;
   color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
   span {
     color: ${props => props.theme.accent};
     margin-right: 4px;
@@ -29,11 +32,13 @@ const Header = styled.div`
 `;
 
 const SelectionDisplay = styled.div`
-  height: calc(450px - 45px);
+  height: 100%;
   width: 100%;
   background: #fafafa;
   color: ${props => props.theme.color};
   padding: 24px;
+  overflow-y: scroll;
+  margin-top: 45px;
   h3 {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.87);
@@ -63,6 +68,7 @@ const SelectionDisplay = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    flex-wrap: wrap;
     width: 100%;
     margin: 12px 0 24px 0;
   }
@@ -73,6 +79,7 @@ const FontNamePill = styled.div`
   padding: 6px 12px;
   width: fit-content;
   margin-right:6px;
+  margin:6px 6px 6px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -105,6 +112,7 @@ const GenerateURL = styled.div`
     padding: 11px 16px;
     width: 100%;
     min-height: 40px;
+    word-wrap: break-word;
 
     li {
       list-style: none;

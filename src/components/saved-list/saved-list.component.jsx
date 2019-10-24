@@ -7,17 +7,33 @@ const SavedList = ({
   savedListOpen,
   setSavedListOpen
 }) => {
+  let listStringForLink = "";
+  let string = "";
+  savedList.forEach(
+    font => (listStringForLink += font.family.split(" ").join("+") + "|")
+  );
   return (
     <SavedListStyles.Container savedListOpen={savedListOpen}>
-      <SavedListStyles.Header onClick={() => setSavedListOpen(!savedListOpen)}>
-        <span>{savedList.length}</span>
-        Font Famil{savedList.length > 1 ? "ies" : "y"} Saved
-      </SavedListStyles.Header>
+      <div>
+        <SavedListStyles.Header
+          onClick={() => setSavedListOpen(!savedListOpen)}
+        >
+          <span>{savedList.length}</span>
+          Font Famil{savedList.length > 1 ? "ies" : "y"} Saved
+        </SavedListStyles.Header>
+      </div>
       {savedListOpen && (
         <SavedListStyles.SelectionDisplay>
           <div className="StateHeader">
             <h3>Your Selection</h3>
-            <button>Clear All</button>
+            <button
+              onClick={() => {
+                setSavedListOpen(false);
+                setSavedList([]);
+              }}
+            >
+              Clear All
+            </button>
             <i className="fas fa-share"></i>
             <i className="fas fa-download"></i>
           </div>
@@ -39,7 +55,10 @@ const SavedList = ({
             </p>
             <div className="CodeBlock">
               <li>
-                {`<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto&display=swap" rel="stylesheet">`}
+                {`<link href="https://fonts.googleapis.com/css?family=${listStringForLink.slice(
+                  0,
+                  -1
+                )}&display=swap" rel="stylesheet">`}
               </li>
             </div>
           </SavedListStyles.GenerateURL>
@@ -48,9 +67,19 @@ const SavedList = ({
             <p>Use the following CSS rules to specify these families:</p>
             <div className="CodeBlock">
               {savedList.map((e, i) => {
+                let backup;
+                if (e.category === "handwriting" || "display") {
+                  backup = "cursive";
+                } else backup = e.category;
                 return (
                   <li key={e.family}>
-                    font-family: '{e.family}', {e.category};
+                    font-family: '{e.family}',{" "}
+                    {e.category === "handwriting"
+                      ? "cursive"
+                      : e.category === "display"
+                      ? "cursive"
+                      : e.category}
+                    ;
                   </li>
                 );
               })}
