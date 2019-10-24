@@ -39,7 +39,9 @@ const Toolbar = ({
       className={toolbarFixedToTop ? "fixedToTop" : "independent"}
     >
       <ToolbarStyles.SearchContainer>
-        <i className="fal fa-search"></i>
+        <div className="IconContainer">
+          <i className="fal fa-search"></i>
+        </div>
         <input
           placeholder="Search Fonts"
           value={searchQuery}
@@ -89,41 +91,40 @@ const Toolbar = ({
 
       <ToolbarStyles.ThemeContainer>
         <button className="light" onClick={() => setThemeIsLight(true)}>
-          {themeIsLight && (
-            <div>
-              <i className="far fa-check"></i>
-            </div>
-          )}
+          {themeIsLight && <i className="far fa-check"></i>}
         </button>
+
         <button className="dark" onClick={() => setThemeIsLight(false)}>
-          {!themeIsLight && (
-            <div>
-              <i className="far fa-check"></i>
-            </div>
-          )}
+          {!themeIsLight && <i className="far fa-check"></i>}
         </button>
       </ToolbarStyles.ThemeContainer>
 
       <ToolbarStyles.ListDisplayContainer>
-        <button
-          onClick={() => setListType("grid")}
-          className={`${listType === "grid" && "active"}`}
-        >
-          <i className="fal fa-th-large"></i>
-        </button>
+        <div className="IconContainer">
+          <button
+            onClick={() => setListType("grid")}
+            className={`${listType === "grid" && "active"}`}
+          >
+            <i className="fal fa-th-large"></i>
+          </button>
+        </div>
 
-        <button
-          onClick={() => setListType("list")}
-          className={`${listType === "list" && "active"}`}
-        >
-          <i className="fal fa-list"></i>
-        </button>
+        <div className="IconContainer">
+          <button
+            onClick={() => setListType("list")}
+            className={`${listType === "list" && "active"}`}
+          >
+            <i className="fal fa-list"></i>
+          </button>
+        </div>
       </ToolbarStyles.ListDisplayContainer>
 
       <ToolbarStyles.ResetContainer title="Reset">
-        <button onClick={e => reset()}>
-          <i className="fas fa-redo"></i>
-        </button>
+        <div className="IconContainer">
+          <button onClick={e => reset()}>
+            <i className="fas fa-redo"></i>
+          </button>
+        </div>
       </ToolbarStyles.ResetContainer>
     </ToolbarStyles.Container>
   );

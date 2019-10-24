@@ -13,10 +13,19 @@ const Container = styled.div`
   z-index: 10;
   background: none;
   display: flex;
-  justify-content: flex-start;
+  justify-content: justify-content;
   align-items: center;
   background: ${props => props.theme.bg};
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  & .IconContainer {
+    height: 18px;
+    width: 18px;
+    margin: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid black; */
+  }
 
   &.fixedToTop {
     height: 56px;
@@ -37,7 +46,7 @@ const SearchContainer = styled.div`
   }
   & input {
     border: none;
-    width: 120px;
+    width: 200px;
     height: 100%;
     background: none;
     padding: 4px 8px;
@@ -95,7 +104,7 @@ const TextModContainer = styled.div`
     border: none;
     border-bottom: 1px solid ${props => props.theme.color};
     padding: 4px 8px;
-    width: 300px;
+    min-width: 200px;
     color: ${props => props.theme.color};
   }
 
@@ -229,7 +238,6 @@ const ThemeContainer = styled.div`
 `;
 
 const ResetContainer = styled.div`
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
