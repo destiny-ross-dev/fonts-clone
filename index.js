@@ -15,8 +15,6 @@ const app = express();
 // Global middleware
 globalMiddleware(app);
 
-app.use(express.static(`${__dirname}/build`));
-
 // app.use("/auth", authRouter);
 app.use("/fonts", fontsRouter);
 
