@@ -6,6 +6,9 @@ const Container = styled.div`
   z-index: 1;
   padding: 0 64px;
   margin: 0 auto;
+  @media (max-width: 600px) {
+    padding: 0 12px;
+  }
   & h2 {
     width: 100%;
     & span {

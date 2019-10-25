@@ -1,22 +1,22 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 1160px;
-  height: 46px;
+  width: 1152px;
   height: 56px;
   border-radius: 48px;
   border: ${props => props.theme.border};
   position: sticky;
   top: 0;
-  margin: 24px;
+  margin: 24px 64px;
   box-shadow: ${props => props.theme.bs};
   z-index: 10;
   background: none;
   display: flex;
-  justify-content: justify-content;
+  justify-content: center;
   align-items: center;
   background: ${props => props.theme.bg};
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 0 0px;
   & .IconContainer {
     height: 18px;
     width: 18px;
@@ -35,6 +35,10 @@ const Container = styled.div`
     border-bottom: ${props => props.theme.border};
     z-index: 10;
     padding: 0 64px;
+    justify-content: center;
+  }
+  @media (max-width: 600px) {
+    width: calc(100vw - 24px);
   }
 `;
 
@@ -46,7 +50,7 @@ const SearchContainer = styled.div`
   }
   & input {
     border: none;
-    width: 200px;
+    width: 150px;
     height: 100%;
     background: none;
     padding: 4px 8px;
@@ -98,13 +102,16 @@ const TextModContainer = styled.div`
   padding: 0 12px 0 0;
   border-right: ${props => props.theme.border};
   border-left: ${props => props.theme.border};
+  @media (max-width: 600px) {
+    display: none;
+  }
 
   input {
     background: none;
     border: none;
     border-bottom: 1px solid ${props => props.theme.color};
     padding: 4px 8px;
-    min-width: 200px;
+    min-width: 250px;
     color: ${props => props.theme.color};
   }
 
@@ -127,6 +134,9 @@ const FontSizeModContainer = styled.div`
   align-items: center;
   padding: 0 12px 0 0;
   border-right: ${props => props.theme.border};
+  @media (max-width: 600px) {
+    display: none;
+  }
 
   .react-select__single-value {
     color: ${props => props.theme.color};
@@ -217,6 +227,9 @@ const ThemeContainer = styled.div`
   align-items: center;
   padding: 0 12px;
   border-right: ${props => props.theme.border};
+  @media (max-width: 600px) {
+    display: none;
+  }
 
   & button {
     height: 20px;
@@ -264,6 +277,9 @@ const ListDisplayContainer = styled.div`
   align-items: center;
   padding: 0 12px;
   border-right: ${props => props.theme.border};
+  @media (max-width: 600px) {
+    display: none;
+  }
   button {
     background: ${props => props.theme.bg};
     color: ${props => props.theme.color};

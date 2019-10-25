@@ -23,6 +23,9 @@ const Container = styled.footer`
       color: ${props => props.theme.dark};
     }
   }
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 const FooterStyles = {

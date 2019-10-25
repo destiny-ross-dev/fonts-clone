@@ -13,7 +13,7 @@ const Header = ({
   setToken
 }) => {
   const responseGoogle = response => {
-    console.log(response);
+    console.log(response.details);
     setUser(response.profileObj);
     setToken(response.tokenObj);
   };
@@ -61,7 +61,7 @@ const Header = ({
                 style={{ background: "#ff5252" }}
                 render={renderProps => (
                   <HeaderStyles.Button
-                    onClick={renderProps.onClick}
+                    onClick={() => renderProps.onClick}
                     disabled={renderProps.disabled}
                   >
                     <img src={googleLogo} alt="Google logo" /> Login With Google

@@ -34,6 +34,9 @@ const Nav = styled.nav`
   width: 1000px;
   display: flex;
   align-items: center;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 const NavItem = styled.li`
   font-family: "Roboto";
