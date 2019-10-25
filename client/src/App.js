@@ -123,6 +123,7 @@ function App() {
   return (
     <ThemeProvider theme={themeIsLight ? lightTheme : darkTheme}>
       <AppContainer>
+        <GlobalStyle />
         <Header
           user={user}
           setUser={setUser}
@@ -179,7 +180,6 @@ function App() {
         )}
         <Footer />
       </AppContainer>
-      <GlobalStyle />
     </ThemeProvider>
   );
 }
