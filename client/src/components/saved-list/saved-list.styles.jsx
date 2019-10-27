@@ -8,10 +8,16 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  right: 107px;
+  right: 64px;
   bottom: 0;
   z-index: 5;
   box-shadow: ${props => props.theme.bs};
+  @media (max-width: 600px) {
+    width: 90vw;
+    right: 0;
+    left: 0;
+    height: ${props => (props.savedListOpen ? "60vh" : "55px")};
+  }
 `;
 const Header = styled.div`
   background: rgb(34, 34, 34);
@@ -29,6 +35,10 @@ const Header = styled.div`
     color: ${props => props.theme.accent};
     margin-right: 4px;
   }
+  @media (max-width: 600px) {
+    height: 55px;
+    width: 100vw;
+  }
 `;
 
 const SelectionDisplay = styled.div`
@@ -43,6 +53,12 @@ const SelectionDisplay = styled.div`
     font-size: 14px;
     color: rgba(0, 0, 0, 0.87);
     font-family: "Roboto";
+  }
+
+  @media (max-width: 600px) {
+    width: 100vw;
+    padding: 24px;
+    margin-left: 42px;
   }
 
   .StateHeader {

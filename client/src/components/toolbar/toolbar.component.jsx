@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Select from "react-select";
 
 import ToolbarStyles from "./toolbar.styles";
@@ -22,7 +22,7 @@ const Toolbar = ({
   displayTextType,
   setDisplayTextType,
   displayText,
-  setDisplayText,
+  handleDisplayTextChange,
   fontSize,
   setFontSize,
   reset,
@@ -34,6 +34,8 @@ const Toolbar = ({
   setSearchQuery,
   onSearchSubmit
 }) => {
+  useEffect(() => {}, [displayTextType]);
+  console.log(displayTextType);
   return (
     <ToolbarStyles.Container
       className={toolbarFixedToTop ? "fixedToTop" : "independent"}
@@ -59,13 +61,16 @@ const Toolbar = ({
               displayTextType.charAt(0).toUpperCase() +
               displayTextType.substr(1).toLowerCase()
           }}
+          value={TextModOptions.filter(
+            option => option.value === displayTextType
+          )}
           options={TextModOptions}
           styles={customStyles}
           placeholder="Display Type"
         />
         <input
           placeholder="Type Custom Text"
-          onChange={e => setDisplayText(e.target.value)}
+          onChange={e => handleDisplayTextChange(e.target.value)}
           value={displayText}
         />
       </ToolbarStyles.TextModContainer>
@@ -131,7 +136,6 @@ const Toolbar = ({
 };
 const customStyles = {
   option: (provided, state) => {
-    console.log(provided, state);
     return {
       ...provided,
       width: 120,

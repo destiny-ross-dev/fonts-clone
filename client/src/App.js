@@ -23,6 +23,8 @@ const lightTheme = {
 
 const darkTheme = {
   bg: "#1F1B24",
+  bgl: "#2C2633",
+
   color: "white",
   accent: "#ff5252",
   dark: "#FF1F1F",
@@ -107,7 +109,7 @@ function App() {
     setListType("grid");
   };
 
-  const handleDisplayTypeChange = type => {
+  const handleDisplayTypeChange = (type, text) => {
     const displayTextDefaults = {
       sentence: "Sphinx of black quartz, judge my vow.",
       paragraph:
@@ -117,8 +119,12 @@ function App() {
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ‘?’“!”(%)[#]{@}/&<-+÷×=>®©$€£¥¢:;,.*",
       custom: ""
     };
+    setDisplayText(text || displayTextDefaults[type]);
     setDisplayTextType(type);
-    setDisplayText(displayTextDefaults[type]);
+  };
+
+  const handleDisplayTextChange = text => {
+    handleDisplayTypeChange("custom", text);
   };
   return (
     <ThemeProvider theme={themeIsLight ? lightTheme : darkTheme}>
@@ -138,7 +144,7 @@ function App() {
           displayTextType={displayTextType}
           setDisplayTextType={handleDisplayTypeChange}
           displayText={displayText}
-          setDisplayText={setDisplayText}
+          handleDisplayTextChange={handleDisplayTextChange}
           fontSize={fontSize}
           setFontSize={setFontSize}
           reset={reset}

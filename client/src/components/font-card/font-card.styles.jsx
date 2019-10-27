@@ -13,6 +13,7 @@ const Container = styled.div`
   flex-direction: column;
   text-align: start;
   border-top: 1px solid ${props => props.theme.accent};
+  background: ${props => props.theme.bgl};
   :hover {
     border-top: 2px solid ${props => props.theme.accent};
   }
@@ -20,6 +21,10 @@ const Container = styled.div`
   }
   p {
     word-wrap: break-word;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 680px;
   }
 `;
 

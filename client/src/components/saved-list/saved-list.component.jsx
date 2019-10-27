@@ -14,16 +14,12 @@ const SavedList = ({
   );
   return (
     <SavedListStyles.Container savedListOpen={savedListOpen}>
-      <div>
-        <SavedListStyles.Header
-          onClick={() => setSavedListOpen(!savedListOpen)}
-        >
-          <span>{savedList.length}</span>
-          Font Famil{savedList.length > 1 ? "ies" : "y"} Saved
-        </SavedListStyles.Header>
-      </div>
+      <SavedListStyles.Header onClick={() => setSavedListOpen(!savedListOpen)}>
+        <span>{savedList.length}</span>
+        Font Famil{savedList.length > 1 ? "ies" : "y"} Saved
+      </SavedListStyles.Header>
       {savedListOpen && (
-        <SavedListStyles.SelectionDisplay>
+        <SavedListStyles.SelectionDisplay className="test">
           <div className="StateHeader">
             <h3>Your Selection</h3>
             <button

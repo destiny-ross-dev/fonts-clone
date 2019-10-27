@@ -4,7 +4,6 @@ import Loader from "../loader/loader.component";
 import { LOAD_ON_SCROLL, LOAD_ON_INIT } from "../../config";
 
 const FontCard = React.lazy(() => import("../font-card/font-card.component"));
-// import FontCard from "../font-card/font-card.component";
 const FontList = ({
   data,
   displayText,
@@ -22,7 +21,10 @@ const FontList = ({
         setOffset(LOAD_ON_INIT);
         return;
       }
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight * 0.9
+      ) {
         console.log({ offset }, { next: offset + LOAD_ON_SCROLL });
         getPage(offset + LOAD_ON_SCROLL);
         setOffset(offset + LOAD_ON_SCROLL);

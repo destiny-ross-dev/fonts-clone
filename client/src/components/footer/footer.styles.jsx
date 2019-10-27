@@ -2,16 +2,18 @@ import styled from "styled-components";
 
 const Container = styled.footer`
   position: fixed;
-  width: 50px;
-  height: calc(100vh - 64px);
+  height: 45px;
+  width: 100vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  right: 0;
-  bottom: 0;
-  writing-mode: vertical-rl;
+  bottom: 0px;
   text-orientation: mixed;
+  background: white;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.06);
   z-index: 2;
+  padding: 0 600px 0 64px;
+  border-top: ${props => props.theme.border};
   p {
     margin: 25px 0;
   }
