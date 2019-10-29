@@ -8,7 +8,8 @@ const FontCard = ({
   fontFamily,
   category,
   saved,
-  setSavedList
+  setSavedList,
+  listType
 }) => {
   const arr300 = ["Open Sans Condensed", "Sunflower"];
   let search = fontFamily.split(" ").join("+");
@@ -20,9 +21,12 @@ const FontCard = ({
   if (category === "handwriting" || "display") {
     backup = "cursive";
   } else backup = category;
-
   return (
-    <Card.Container fontSize={fontSize} fontFamily={fontFamily}>
+    <Card.Container
+      cardType={listType}
+      fontSize={fontSize}
+      fontFamily={fontFamily}
+    >
       <Helmet>
         <link
           href={link}
@@ -37,7 +41,6 @@ const FontCard = ({
           <div
             className="Add"
             onClick={() => {
-              console.log("add:", { family: fontFamily, category });
               setSavedList(savedList => [
                 ...savedList,
                 { family: fontFamily, category }

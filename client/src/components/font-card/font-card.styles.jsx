@@ -4,8 +4,9 @@ const Container = styled.div`
   box-shadow: ${props => props.theme.bs};
   border: 1px solid ${props => props.theme.border};
   padding: 24px;
-  min-width: 300px;
-  max-width: 480px;
+  /* min-width: 300px; */
+  /* max-width: 480px; */
+  min-width: ${props => (props.cardType === "grid" ? "300px" : "100%")};
   min-height: 120px;
   margin: 24px;
   flex: 1;

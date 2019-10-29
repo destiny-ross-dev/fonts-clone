@@ -13,7 +13,8 @@ const FontList = ({
   offset,
   getPage,
   savedList,
-  setSavedList
+  setSavedList,
+  listType
 }) => {
   useEffect(() => {
     const loadMore = () => {
@@ -39,7 +40,8 @@ const FontList = ({
   return (
     <FontListStyles.Container>
       <h2>
-        Viewing <span>{data.length}</span> of 960 Total Fonts
+        Viewing <span>{data.length}</span> of 960 Total Fonts{" "}
+        <span>by Popularity</span>
       </h2>
 
       <Suspense fallback={<Loader />}>
@@ -52,6 +54,7 @@ const FontList = ({
               fontFamily={e.family}
               category={e.category}
               setSavedList={setSavedList}
+              listType={listType}
               saved={savedList.some(font => font.family === e.family)}
             />
           );

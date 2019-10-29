@@ -45,7 +45,6 @@ function App() {
     "Sphinx of black quartz, judge my vow."
   );
   const [fontSize, setFontSize] = useState("32px");
-
   const [themeIsLight, setThemeIsLight] = useState(true);
   const [listType, setListType] = useState("grid");
   const [savedListOpen, setSavedListOpen] = useState(false);
@@ -55,9 +54,6 @@ function App() {
   ]);
   const [token, setToken] = useState({});
   const [user, setUser] = useState({});
-
-  // Sends initial request to server to request fonts from api
-
   const [offset, setOffset] = useState(LOAD_ON_INIT);
   const [listData, setListData] = useState([]);
   useEffect(() => {
@@ -161,6 +157,7 @@ function App() {
             offset={offset}
             setOffset={setOffset}
             data={listData}
+            listType={listType}
             getPage={getPage}
             savedList={savedList}
             setSavedList={setSavedList}
