@@ -1,7 +1,7 @@
 import React from "react";
-import HeaderStyles from "./header.styles";
 import { GoogleLogin } from "react-google-login";
 import { GoogleLogout } from "react-google-login";
+import HeaderStyles from "./header.styles";
 import googleLogo from "../../googleLogo.png";
 
 const Header = ({
@@ -13,13 +13,11 @@ const Header = ({
   setToken
 }) => {
   const responseGoogle = response => {
-    console.log(response.details);
     setUser(response.profileObj);
     setToken(response.tokenObj);
   };
 
   const logout = response => {
-    console.log("log out", response);
     setUser({});
     setToken({});
   };

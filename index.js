@@ -27,7 +27,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const start = async () => {
-  console.log(config);
   try {
     // await connect(app);
     app.listen(config.port, () => {

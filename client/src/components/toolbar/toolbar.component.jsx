@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Select from "react-select";
-
 import ToolbarStyles from "./toolbar.styles";
 
 const TextModOptions = [
@@ -17,6 +16,7 @@ const FontSizeOptions = [
   { value: "20px", label: "20px" },
   { value: "24px", label: "24px" }
 ];
+
 const Toolbar = ({
   toolbarFixedToTop,
   displayTextType,
@@ -35,7 +35,6 @@ const Toolbar = ({
   onSearchSubmit
 }) => {
   useEffect(() => {}, [displayTextType]);
-  console.log(displayTextType);
   return (
     <ToolbarStyles.Container
       className={toolbarFixedToTop ? "fixedToTop" : "independent"}

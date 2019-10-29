@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect } from "react";
-import FontListStyles from "./font-list.styles";
 import Loader from "../loader/loader.component";
+import FontListStyles from "./font-list.styles";
 import { LOAD_ON_SCROLL, LOAD_ON_INIT } from "../../config";
 
 const FontCard = React.lazy(() => import("../font-card/font-card.component"));
@@ -25,7 +25,6 @@ const FontList = ({
         window.innerHeight + window.scrollY >=
         document.body.offsetHeight * 0.9
       ) {
-        console.log({ offset }, { next: offset + LOAD_ON_SCROLL });
         getPage(offset + LOAD_ON_SCROLL);
         setOffset(offset + LOAD_ON_SCROLL);
       }

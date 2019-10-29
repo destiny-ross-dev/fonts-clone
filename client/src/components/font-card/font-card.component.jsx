@@ -56,7 +56,7 @@ const FontCard = ({
               )
             }
           >
-            <i class="fas fa-minus-circle"></i>
+            <i className="fas fa-minus-circle"></i>
           </div>
         )}
       </Card.TitleBar>

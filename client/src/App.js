@@ -1,9 +1,9 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { ThemeProvider } from "styled-components";
 import axios from "axios";
+import GlobalStyle, { AppContainer, ToTopButton } from "./App.styles";
 import Header from "./components/header/header.component";
 import Toolbar from "./components/toolbar/toolbar.component";
-import GlobalStyle, { AppContainer, ToTopButton } from "./App.styles";
 import SavedList from "./components/saved-list/saved-list.component";
 import Footer from "./components/footer/footer.component";
 import Loader from "./components/loader/loader.component";
@@ -12,6 +12,7 @@ import { LOAD_ON_INIT } from "./config";
 const FontList = React.lazy(() =>
   import("./components/font-list/font-list.component")
 );
+
 const lightTheme = {
   bg: "white",
   color: "rgba(0,0,0,.6)",
@@ -24,7 +25,6 @@ const lightTheme = {
 const darkTheme = {
   bg: "#1F1B24",
   bgl: "#2C2633",
-
   color: "white",
   accent: "#ff5252",
   dark: "#FF1F1F",
